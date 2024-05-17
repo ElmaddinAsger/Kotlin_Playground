@@ -2,7 +2,7 @@ import java.util.*
 
 fun main () {
 
-    //taskOne()
+    taskOne()
 
     //taskTwo()
 
@@ -12,13 +12,12 @@ fun main () {
 
     //taskFive()
 
-    taskSix()
+   // taskSix()
 }
 
 //100-1000 araliginda butun reqemleri tekrar olan ededlerin ededi ortasini tapin.
 // Numune:111,222 111+222/2 2 burda el ile yazilmasin bu 4,5,6 reqemler ucunde odensin
 fun taskOne () {
-
     print("First object: ")
     val firstObject = Scanner(System.`in`).nextInt()
     print("Last object: ")
@@ -28,34 +27,25 @@ fun taskOne () {
     var sum = 0
 
     for (element in firstObject..lastObject) {
-
         val text = element.toString()
-
-        var controller = 0
-
-        for (indexOne in text.indices) {
-
-            for (indexTwo in indexOne+1..<text.length) {
-
-                if (text[indexOne] == text[indexTwo]) {
-                    controller++
-
+        var controller = true
+        val indexOne = text[0]
+            for (index2 in 1 ..<text.length) {
+                if (indexOne != text[index2]) {
+                    controller = false
                 }
             }
-        }
 
-        if (controller == text.length) {
-
-            println(text)
+        if (controller && text.length >= 2) {
+            println(element)
             count++
             sum += element
-
         }
     }
-
     println(sum.toDouble() / count)
-
 }
+
+
 
 //100-1000 araliginda butun sade ve murekkeb ededlerin sayini tapan proqram yazin. Her ikisinin sayini
 fun taskTwo () {
