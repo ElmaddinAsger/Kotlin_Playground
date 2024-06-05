@@ -8,15 +8,17 @@ fun main () {
     //val myLsit5 = listOf(10,20,30,10,20,30,40,10,20)
     //println(cloneSum(myLsit5))
 
+    //val myLsit3 = listOf(mapOf("studentId" to 45),mapOf("studentId" to 12),mapOf("studentId" to 34),mapOf("studentId" to 67),
+    //    mapOf("studentId" to 112),mapOf("studentId" to 22),mapOf("studentId" to 10),mapOf("studentId" to 7))
+   // println(sorting(myLsit3).toString())
+
+    val mySet4 = setOf(12,22,34,13,67,44,88,16,32)
+    println(divisible(mySet4))
+
+
 
 
 }
-
-
-//3.8 olculu mapListi verilb ve bu listde Key olarak studentId ve onun qiymeti saxlanilir
-//Hemin listi kıymete uygun olarak artan sirada nizamlayın
-//4.8 olculu setListi verilib ve bu listde 2 ve 8 bölünen ededlerin cemini tapan
-//Hair funksiyalardan istifade etmeyin
 
 //task One
 //1.8 olculu list verilir.Hemin listde duplicate olan elementleri silmek
@@ -61,6 +63,32 @@ fun removeUnical (inputList: List<Int>) : List<Int> {
             myList.add(i) */
     }
     return myList
+}
+
+//3.8 olculu mapListi verilb ve bu listde Key olarak studentId ve onun qiymeti saxlanilir
+//Hemin listi kıymete uygun olarak artan sirada nizamlayın
+fun sorting (inputList: List<Map<String,Int>>) : List<Map<String,Int>> {
+    val key = inputList[0].keys.first()
+    var myList = inputList.toMutableList()
+    for (map in inputList.indices){
+        for (nextMap in map+1..<inputList.size){
+            if (myList[map].getValue(key) > myList[nextMap].getValue(key)){
+                val result = myList[map]
+                myList[map] = myList[nextMap]
+                myList[nextMap] = result
+            }
+        }
+    }
+    return myList
+}
+
+//4.8 olculu setListi verilib ve bu listde 2 ve 8 bölünen ededlerin cemini tapan
+//Hair funksiyalardan istifade etmeyin
+fun divisible (inputSet: Set<Int>) : Int {
+    var result = 0
+    for (i in inputSet)
+        if (i % 8 == 0) result += i
+    return result
 }
 
 //5.8 olculu list verilir ve bu listde tekrar olan ededlerin cemini tapan
