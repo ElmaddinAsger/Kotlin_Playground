@@ -12,8 +12,11 @@ fun main () {
     //    mapOf("studentId" to 112),mapOf("studentId" to 22),mapOf("studentId" to 10),mapOf("studentId" to 7))
    // println(sorting(myLsit3).toString())
 
-    val mySet4 = setOf(12,22,34,13,67,44,88,16,32)
-    println(divisible(mySet4))
+   // val mySet4 = setOf(12,22,34,13,67,44,88,16,32)
+    //println(divisible(mySet4))
+
+    val myMap3 = mutableMapOf(1 to 12, 3 to 7, 4 to 25, 7 to 13, 5 to 36)
+    println(sotring2(myMap3))
 
 
 
@@ -67,6 +70,39 @@ fun removeUnical (inputList: List<Int>) : List<Int> {
 
 //3.8 olculu mapListi verilb ve bu listde Key olarak studentId ve onun qiymeti saxlanilir
 //Hemin listi kıymete uygun olarak artan sirada nizamlayın
+fun sotring2 (inputMap: MutableMap<Int,Int>) : MutableMap<Int, Int> {
+    val resultMap = mutableMapOf<Int,Int>()
+
+    val values = inputMap.values.toMutableList()
+
+    for (first in values.indices){
+
+        for (second in first..<values.size){
+
+            if (values[first] > values[second]){
+
+                val result = values[first]
+                values[first] = values[second]
+                values[second] = result
+            }
+        }
+    }
+
+    val keys = inputMap.keys.toMutableList()
+
+    for (first in values){
+        for (key in keys){
+            if (first == inputMap[key]) {
+                println("Key: $key Value: ${inputMap[key]}")
+                inputMap[key]?.let { resultMap.put(key, it) }  //resultMap.put(key,inputMap[key])
+                inputMap.remove(key, inputMap[key])
+            }
+        }
+    }
+
+    return resultMap
+}
+
 fun sorting (inputList: List<Map<String,Int>>) : List<Map<String,Int>> {
     val key = inputList[0].keys.first()
     var myList = inputList.toMutableList()
