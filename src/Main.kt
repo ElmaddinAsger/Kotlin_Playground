@@ -2,6 +2,13 @@ import java.time.Period
 
 fun main () {
 
+    //Task One
+
+    val myListOne = listOf(3,5,12,16,23,15,24,17)
+    println(myListOne.single { it % 3 == 0 && it % 5 == 0 })
+    println(myListOne.mySingle {it % 3 == 0 && it % 5 == 0 })
+
+
     /* Task Two
     val myList = listOf(20,33,45,30,57,65,80,72)
     println(myList.findLast { it % 10 == 0 })
@@ -46,6 +53,15 @@ fun main () {
 
 }
 //1.single funksiyasinin analoqunu yazmaq.Cagirilan hissede 5 ve 3 bölünen ededi tapmaq
+fun List<Int>.mySingle (predicate: (Int) -> Boolean) : Int {
+    var result = 0
+    for (item in this)
+        if (predicate(item)){
+            result = item
+            break
+        }
+    return  result
+}
 
 
 
