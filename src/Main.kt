@@ -2,12 +2,10 @@ import java.time.Period
 
 fun main () {
 
-    //Task One
-
-    val myListOne = listOf(3,5,12,16,23,15,24,17)
+    /*Task One
+    val myListOne = listOf(3,5,12,16,23,15,24,17,30,12)
     println(myListOne.single { it % 3 == 0 && it % 5 == 0 })
-    println(myListOne.mySingle {it % 3 == 0 && it % 5 == 0 })
-
+    println(myListOne.mySingle {it % 3 == 0 && it % 5 == 0 }) */
 
     /* Task Two
     val myList = listOf(20,33,45,30,57,65,80,72)
@@ -26,26 +24,25 @@ fun main () {
 
     println(customers.myCount { it.age > 20 && it.height > 170 && it.height < 190 })*/
 
-     //Task Four
-    /* val personOne = Person(12,"Jack")
+    /*Task Four
+    val personOne = Person(12,"Jack")
 
-    val myListFour = listOf(
-        personOne,
-        Person(19,"George"),
-        Person(84,"Orwell"),
-        Person(12,"Tesla"),
-        Person(84,"Saramago")
-    )
+   val myListFour = listOf(
+       personOne,
+       Person(19,"George"),
+       Person(84,"Orwell"),
+       Person(12,"Tesla"),
+       Person(84,"Saramago")
+   )
 
-    println(myListFour.distinctBy { it.id })
-    println(myListFour.myDistinctBy { it.id }) */
+   println(myListFour.distinctBy { it.id })
+   println(myListFour.myDistinctBy { it.id }) */
 
     
-    //Task Five
-
-    val numbers = listOf(1, 2, 3, 4, 5, 6, 7, 8, 9)
+    /*Task Five
+    val numbers = listOf(  8, 2, 1, 4, 3, 4, 5, 6, 7, 8, 9)
     println(numbers.dropWhile { it % 2 == 0})
-    println(numbers.myDropWhile { it % 2 == 0 })
+    println(numbers.myDropWhile { it % 2 == 0 }) */
 
 
 
@@ -55,12 +52,19 @@ fun main () {
 //1.single funksiyasinin analoqunu yazmaq.Cagirilan hissede 5 ve 3 bölünen ededi tapmaq
 fun List<Int>.mySingle (predicate: (Int) -> Boolean) : Int {
     var result = 0
-    for (item in this)
+    var count = 0
+    for (item in this){
         if (predicate(item)){
-            result = item
-            break
+            count++
         }
-    return  result
+
+        if (count == 1)
+            result = item
+    }
+
+    if (count == 1)
+        return  result
+    else return 0
 }
 
 
@@ -121,9 +125,17 @@ fun List<Person>.myDistinctBy (predicate: (Person) -> Any) : List<Person> {
 fun List<Int>.myDropWhile (predicate: (Int) -> Boolean) : List<Int> {
     val result = mutableListOf<Int>()
 
-    for (item in this)
-        if (!predicate(item))
-            result.add(item)
+
+    for (index in this.indices) {
+        if (!predicate(this[index])) {
+            for (nextIndex in index..<this.size) {
+                result.add(this[nextIndex])
+            }
+            break
+        }
+
+    }
+
     return result
 }
 
