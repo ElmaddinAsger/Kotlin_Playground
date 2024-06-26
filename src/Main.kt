@@ -12,11 +12,13 @@ fun main () {
     //restricts.myRemoveAll { it > 12 }
     //println(restricts)
 
-    println( restricts.filter {  it > 25})
+    //println( restricts.filter {  it > 25})
+    //println(restricts)
+    //println(restricts.myFilter { it > 25 })
 
-    println(restricts)
-
-    println(restricts.myFilter { it > 25 })
+    //restricts.removeIf { it % 2 != 0 }
+    //restricts.myRemoveIf { it % 2 != 0  }
+    //println(restricts)
 
 
 }
@@ -56,5 +58,35 @@ fun <T> List<T>.myFilter(predicate: (T) -> Boolean) : List<T> {
             result.add(item)
     return result
 }
+
+//type algorithm of .removeIf{} with generics (with iterator)
+fun <T> MutableList<T>.myRemoveIf (filter: (T) -> Boolean) : Boolean {
+    val iterator = this.iterator()
+    var control = false
+    while (iterator.hasNext())
+        if (filter(iterator.next())) {
+            iterator.remove()
+            control = true
+        }
+    return control
+}
+
+//type algorithm of .single{} with generics
+fun <T> List<T>.mySingle () {
+
+}
+
+//type algorithm of .count{} with generics
+
+//type algorithm of .replaceAll{} with generics
+
+//type algorithm of .forEach{} with generics
+
+//type algorithm of .findLast{} with generics
+
+//type algorithm of .distinctBy{} with generics
+
+//type algorithm of .dropWhile{} with generics
+
 
 
